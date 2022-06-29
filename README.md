@@ -1,6 +1,8 @@
 ## 这是一个简单的工具类,主要是自己项目中用到的,后期会不断完善.
 引用地址:implementation 'cn.yanjingtp.utils:utils:latest.release'
 
+## 所有需要传入context的地方都已默认使用了全局context,可选择传或者不传
+
 ## LogUtils
 fun <T> T?.logD()
 
