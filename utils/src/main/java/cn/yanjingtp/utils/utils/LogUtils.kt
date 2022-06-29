@@ -4,65 +4,58 @@ import android.util.Log
 
 private const val TAG = "TAG"
 
-fun String?.logE() {
-    when {
-        null == this -> {
-            Log.e("${TAG}_${getLogInfo()}", "字符串为null")
+/**
+ * logE
+ */
+fun <T> T?.logE(){
+    when (this) {
+        is String? -> {
+            when {
+                null == this -> {
+                    Log.e("${TAG}_${getLogInfo()}", "传入对象为null")
+                }
+                this.isEmpty() -> {
+                    Log.e("${TAG}_${getLogInfo()}", "传入对象为空")
+                }
+                else -> {
+                    Log.e("${TAG}_${getLogInfo()}", this)
+                }
+            }
         }
-        this.isEmpty() -> {
-            Log.e("${TAG}_${getLogInfo()}", "字符串为空")
-        }
-        else -> {
-            Log.e("${TAG}_${getLogInfo()}", this)
-        }
-    }
-
-}
-
-fun String?.logD() {
-    when {
-        null == this -> {
-            Log.d("${TAG}_${getLogInfo()}", "字符串为null")
-        }
-        this.isEmpty() -> {
-            Log.d("${TAG}_${getLogInfo()}", "字符串为空")
-        }
-        else -> {
-            Log.d("${TAG}_${getLogInfo()}", this)
+        else ->  {
+            when{
+                null == this -> Log.e("${TAG}_${getLogInfo()}", "传入对象为null")
+                else ->Log.e("${TAG}_${getLogInfo()}", this.toString())
+            }
         }
     }
 }
 
-fun Int.logE() {
-    Log.e("${TAG}_${getLogInfo()}", this.toString())
-}
-
-fun Int.logD() {
-    Log.d("${TAG}_${getLogInfo()}", this.toString())
-}
-
-fun Double.logE() {
-    Log.e("${TAG}_${getLogInfo()}", this.toString())
-}
-
-fun Double.logD() {
-    Log.d("${TAG}_${getLogInfo()}", this.toString())
-}
-
-fun Float.logE() {
-    Log.e("${TAG}_${getLogInfo()}", this.toString())
-}
-
-fun Float.logD() {
-    Log.d("${TAG}_${getLogInfo()}", this.toString())
-}
-
-fun Long.logE() {
-    Log.e("${TAG}_${getLogInfo()}", this.toString())
-}
-
-fun Long.logD() {
-    Log.d("${TAG}_${getLogInfo()}", this.toString())
+/**
+ * logD
+ */
+fun <T> T?.logD(){
+    when (this) {
+        is String? -> {
+            when {
+                null == this -> {
+                    Log.d("${TAG}_${getLogInfo()}", "传入对象为null")
+                }
+                this.isEmpty() -> {
+                    Log.d("${TAG}_${getLogInfo()}", "传入对象为空")
+                }
+                else -> {
+                    Log.d("${TAG}_${getLogInfo()}", this)
+                }
+            }
+        }
+        else ->  {
+            when{
+                null == this -> Log.d("${TAG}_${getLogInfo()}", "传入对象为null")
+                else ->Log.d("${TAG}_${getLogInfo()}", this.toString())
+            }
+        }
+    }
 }
 
 

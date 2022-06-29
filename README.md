@@ -2,13 +2,9 @@
 引用地址:implementation 'cn.yanjingtp.utils:utils:latest.release'
 
 ## LogUtils
-fun String.logE()
+fun <T> T?.logD()
 
-fun String.logD()
-
-
-
-
+fun <T> T?.logE()
 
 ## ToastUtil
 
@@ -19,15 +15,10 @@ fun String.showLong(context: Context)
 fun String.show(context: Context)
 
 
-
-
-
 ## BarUtils
 
 **获取状态栏高度**
 fun getBarHeight(context: Context): Int
-
-
 
 
 
