@@ -1,17 +1,19 @@
 package cn.yanjingtp.utils.test
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.TextView
-import cn.yanjingtp.utils.utils.show
+import cn.yanjingtp.utils.base.BaseActivity
+import cn.yanjingtp.utils.test.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<MainVM,ActivityMainBinding>() {
+    override fun getContentViewId() = R.layout.activity_main
 
-        "12121".show()
-
+    override fun initData() {
+        binding?.vm = mViewModel
 
     }
+
+    override fun initListener() {
+
+    }
+
+
 }
