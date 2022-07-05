@@ -1,5 +1,6 @@
 package cn.yanjingtp.utils.utils
 
+import android.app.ActivityManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -12,7 +13,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.annotation.WorkerThread
 import cn.yanjingtp.utils.base.CtxUtil
-
 import java.io.*
 import java.lang.reflect.Constructor
 import java.lang.reflect.Method
@@ -188,7 +188,7 @@ private fun installBelow28(packageManager: PackageManager, apkPath: String?): Bo
     val pmClz: Class<*> = packageManager.javaClass
     try {
         if (Build.VERSION.SDK_INT >= 21 && Build.VERSION.SDK_INT < 28) {
-            val aClass = Class.forName("android.app.PackageInstallObserver")
+            val aClass = Class.forName("android.utils.PackageInstallObserver")
             val constructor: Constructor<*> = aClass.getDeclaredConstructor()
             constructor.isAccessible = true
             val installObserver: Any = constructor.newInstance()
@@ -313,4 +313,19 @@ fun checkVersion(versionOld: String?, versionNew: String?): Boolean {
     } catch (e: Exception) {
         return false
     }
+}
+
+/**
+ * 用于多进程中在application中判断是否是主进程
+ */
+fun isAppMainProcess(context: Context):Boolean {
+    val pid = android.os.Process.myPid()
+    val packageName = context.packageName
+    val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    activityManager.runningAppProcesses.forEach {
+        if (it.pid == pid) {
+            return it.processName == packageName
+        }
+    }
+    return false
 }

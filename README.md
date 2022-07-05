@@ -137,7 +137,8 @@ fun getPkgName(context: Context, apkPath: String?): String?
 **判断两个版本号哪个大**
 fun checkVersion(versionOld: String?, versionNew: String?): Boolean
 
-
+**用于多进程中在application中判断是否是主进程**
+fun isAppMainProcess(context: Context):Boolean
 
 
 
