@@ -26,7 +26,7 @@ import java.nio.charset.StandardCharsets
  * @param targetPath 目标目录 如:Android/data/com.tencent.mm/MicroMsg/Download
  */
 fun getSAFGrant(targetPath: String): Boolean {
-    for (persistedUriPermission in CtxUtil.getCtx().contentResolver.persistedUriPermissions) {
+    for (persistedUriPermission in CtxUtil.getCtx.contentResolver.persistedUriPermissions) {
         if (persistedUriPermission.isReadPermission && persistedUriPermission.uri.toString() == "content://com.android.externalstorage.documents/tree/primary%3A${
                     URLEncoder.encode(targetPath, StandardCharsets.UTF_8.name())
                 }") {
@@ -60,7 +60,7 @@ fun registerForActivityResult(activity: AppCompatActivity): ActivityResultLaunch
     return activity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
         //保存这个目录的访问权限
         activityResult.data?.data?.let {
-            CtxUtil.getCtx().contentResolver.takePersistableUriPermission(it,
+            CtxUtil.getCtx.contentResolver.takePersistableUriPermission(it,
                 (Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION) and activityResult.data!!.flags)
         }
     }
@@ -71,7 +71,7 @@ fun registerForActivityResult(activity: AppCompatActivity): ActivityResultLaunch
  * @param targetPath 目标目录 如:Android/data/com.tencent.mm/MicroMsg/Download
  */
 fun getDocumentFilePath(targetPath: String): DocumentFile? {
-    return DocumentFile.fromTreeUri(CtxUtil.getCtx(), Uri.parse(changeToUri(targetPath)))
+    return DocumentFile.fromTreeUri(CtxUtil.getCtx, Uri.parse(changeToUri(targetPath)))
 }
 
 /**

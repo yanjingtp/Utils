@@ -18,8 +18,8 @@ fun copyText(context: Context,text: CharSequence?) {
  * 复制文本到剪贴板
  */
 fun copyText(text: CharSequence?) {
-    val cm = CtxUtil.getCtx().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-    cm.setPrimaryClip(ClipData.newPlainText(CtxUtil.getCtx().packageName, text))
+    val cm = CtxUtil.getCtx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    cm.setPrimaryClip(ClipData.newPlainText(CtxUtil.getCtx.packageName, text))
 }
 
 /**
@@ -41,10 +41,10 @@ fun getText(context: Context): CharSequence {
  * 获取剪贴板最近的文本
  */
 fun getText(): CharSequence {
-    val cm = CtxUtil.getCtx().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val cm = CtxUtil.getCtx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val clip = cm.primaryClip
     if (clip != null && clip.itemCount > 0) {
-        val text = clip.getItemAt(0).coerceToText(CtxUtil.getCtx())
+        val text = clip.getItemAt(0).coerceToText(CtxUtil.getCtx)
         if (text != null) {
             return text
         }

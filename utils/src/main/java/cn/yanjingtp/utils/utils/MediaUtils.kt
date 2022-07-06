@@ -18,7 +18,7 @@ fun refresh(cxt: Context, vararg filePaths: String) {
  * 更新媒体库
  */
 fun refresh(vararg filePaths: String) {
-    MediaScannerConnection.scanFile(CtxUtil.getCtx().applicationContext, filePaths, null, null)
+    MediaScannerConnection.scanFile(CtxUtil.getCtx.applicationContext, filePaths, null, null)
 }
 
 /**

@@ -75,13 +75,13 @@ object ToastUtil {
 /**
  *  toast
  */
-fun String.showLong(context: Context = CtxUtil.getCtx()) {
+fun String.showLong(context: Context = CtxUtil.getCtx) {
     ToastUtil.showLong(context, this)
 }
 
 /**
  *  toast
  */
-fun String.show(context: Context = CtxUtil.getCtx()) {
+fun String.show(context: Context = CtxUtil.getCtx) {
     ToastUtil.show(context, this)
 }

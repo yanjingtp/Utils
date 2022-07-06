@@ -16,6 +16,6 @@ fun getColor(context: Context,@ColorRes id: Int): Int {
 /**
  *获取颜色
  */
-fun Int.getColor(context: Context = CtxUtil.getCtx()):Int{
+fun Int.getColor(context: Context = CtxUtil.getCtx):Int{
     return ContextCompat.getColor(context, this)
 }

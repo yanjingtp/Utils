@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="cn.yanjingtp.utils">
 
     <application>
         <provider
-            android:name=".base.CtxUtil"
-            android:authorities="${applicationId}.contextprovider"
-            android:exported="false" />
+            android:authorities="${applicationId}.yanjingtp.androidx-startup"
+            android:name="androidx.startup.InitializationProvider"
+            android:exported="false"
+            android:multiprocess="true"
+            tools:node="merge">
+            <meta-data
+                android:name="cn.yanjingtp.utils.base.CtxUtil"
+                android:value="androidx.startup" />
+        </provider>
     </application>
 
 </manifest>

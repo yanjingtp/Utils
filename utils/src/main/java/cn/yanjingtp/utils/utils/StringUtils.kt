@@ -8,7 +8,7 @@ import cn.yanjingtp.utils.base.CtxUtil
 /**
  * 从String中获取
  */
-fun Int.getString(context: Context = CtxUtil.getCtx()): String {
+fun Int.getString(context: Context = CtxUtil.getCtx): String {
     return context.resources.getString(this)
 }
 

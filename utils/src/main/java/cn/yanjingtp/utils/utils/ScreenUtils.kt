@@ -9,7 +9,7 @@ import cn.yanjingtp.utils.base.CtxUtil
 /**
  * 获取屏幕宽度
  */
-fun getScreenWidth(context: Context = CtxUtil.getCtx()): Int {
+fun getScreenWidth(context: Context = CtxUtil.getCtx): Int {
     val metrics = DisplayMetrics()
     (context.applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.getRealMetrics(
         metrics)
@@ -19,7 +19,7 @@ fun getScreenWidth(context: Context = CtxUtil.getCtx()): Int {
 /**
  * 获取屏幕高度
  */
-fun getScreenHeight(context: Context = CtxUtil.getCtx()): Int {
+fun getScreenHeight(context: Context = CtxUtil.getCtx): Int {
     val metrics = DisplayMetrics()
     (context.applicationContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.getRealMetrics(
         metrics)

@@ -36,7 +36,7 @@ fun getAppIcon(context: Context, packageName: String?): Drawable? {
  */
 fun getAppIcon(packageName: String?): Drawable? {
     return if (packageName.isNullOrEmpty()) null else try {
-        val pm: PackageManager = CtxUtil.getCtx().packageManager
+        val pm: PackageManager = CtxUtil.getCtx.packageManager
         val pi = pm.getPackageInfo(packageName, 0)
         pi?.applicationInfo?.loadIcon(pm)
     } catch (e: PackageManager.NameNotFoundException) {
@@ -64,7 +64,7 @@ fun getAppName(context: Context, packageName: String?): String {
  */
 fun getAppName(packageName: String?): String {
     return if (packageName.isNullOrEmpty()) "" else try {
-        val pm: PackageManager = CtxUtil.getCtx().packageManager
+        val pm: PackageManager = CtxUtil.getCtx.packageManager
         val pi = pm.getPackageInfo(packageName, 0)
         pi?.applicationInfo?.loadLabel(pm)?.toString() ?: ""
     } catch (e: PackageManager.NameNotFoundException) {
@@ -92,7 +92,7 @@ fun getAppVersionName(context: Context, packageName: String?): String {
  */
 fun getAppVersionName(packageName: String?): String {
     return if (packageName.isNullOrEmpty()) "" else try {
-        val pm: PackageManager = CtxUtil.getCtx().packageManager
+        val pm: PackageManager = CtxUtil.getCtx.packageManager
         val pi = pm.getPackageInfo(packageName, 0)
         if (pi == null) "" else pi.versionName
     } catch (e: PackageManager.NameNotFoundException) {
@@ -119,7 +119,7 @@ fun getAppVersionCode(context: Context, packageName: String?): Int {
  */
 fun getAppVersionCode(packageName: String?): Int {
     return if (packageName.isNullOrEmpty()) -1 else try {
-        val pm: PackageManager = CtxUtil.getCtx().packageManager
+        val pm: PackageManager = CtxUtil.getCtx.packageManager
         val pi = pm.getPackageInfo(packageName, 0)
         pi?.versionCode ?: -1
     } catch (e: PackageManager.NameNotFoundException) {
@@ -147,7 +147,7 @@ fun isFirstTimeInstalled(context: Context,packageName: String?): Boolean {
  */
 fun isFirstTimeInstalled(packageName: String?): Boolean {
     return if (packageName.isNullOrEmpty()) false else try {
-        val pi: PackageInfo = CtxUtil.getCtx().packageManager
+        val pi: PackageInfo = CtxUtil.getCtx.packageManager
                 .getPackageInfo(packageName, 0)
         pi.firstInstallTime == pi.lastUpdateTime
     } catch (e: PackageManager.NameNotFoundException) {
@@ -176,9 +176,9 @@ fun silentInstall(context: Context, apkPath: String): Boolean {
 @WorkerThread
 fun silentInstall(apkPath: String): Boolean {
     return if (Build.VERSION.SDK_INT < 28) {
-        installBelow28(CtxUtil.getCtx().packageManager, apkPath)
+        installBelow28(CtxUtil.getCtx.packageManager, apkPath)
     } else {
-        installOver28(CtxUtil.getCtx(), apkPath)
+        installOver28(CtxUtil.getCtx, apkPath)
     }
 }
 
@@ -285,7 +285,7 @@ fun getPkgName(context: Context, apkPath: String?): String? {
  * 获取apk的包名
  */
 fun getPkgName(apkPath: String?): String? {
-    val pm = CtxUtil.getCtx().packageManager
+    val pm = CtxUtil.getCtx.packageManager
     val info = pm.getPackageArchiveInfo(apkPath!!, 0)
     return info?.packageName
 }
@@ -318,7 +318,7 @@ fun checkVersion(versionOld: String?, versionNew: String?): Boolean {
 /**
  * 用于多进程中在application中判断是否是主进程
  */
-fun isAppMainProcess(context: Context):Boolean {
+fun isAppMainProcess(context: Context = CtxUtil.getCtx):Boolean {
     val pid = android.os.Process.myPid()
     val packageName = context.packageName
     val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager

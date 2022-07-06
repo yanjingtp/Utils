@@ -3,6 +3,12 @@
 
 ## 所有需要传入context的地方都已默认使用了全局context,可选择传或者不传
 
+## CtxUtil
+**无侵入方式获取全局context**
+**在多进程中使用前需先调用AppInitializer.getInstance(context).initializeComponent(CxtUtil::class.java)**
+CtxUtil.getCtx
+
+
 ## LogUtils
 fun <T> T?.logD()
 

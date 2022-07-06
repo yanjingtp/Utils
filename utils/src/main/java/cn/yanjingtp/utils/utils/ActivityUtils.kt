@@ -8,7 +8,7 @@ import cn.yanjingtp.utils.base.CtxUtil
 /**
  * 回到桌面
  */
-fun startHomeActivity(context: Context = CtxUtil.getCtx()) {
+fun startHomeActivity(context: Context = CtxUtil.getCtx) {
     val homeIntent = Intent(Intent.ACTION_MAIN)
     homeIntent.addCategory(Intent.CATEGORY_HOME)
     homeIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -28,7 +28,7 @@ fun isValidIntent(context: Context, intent: Intent?): Boolean {
  * 判断Intent 是否有效
  */
 fun isValidIntent(intent: Intent?): Boolean {
-    val packageManager = CtxUtil.getCtx().packageManager
+    val packageManager = CtxUtil.getCtx.packageManager
     val activities = packageManager.queryIntentActivities(intent!!, 0)
     return activities.isNotEmpty()
 }

@@ -43,7 +43,7 @@ fun isDeviceRooted(): Boolean {
  * 判断设备 ADB 是否可用
  */
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-fun isAdbEnabled(context: Context = CtxUtil.getCtx()): Boolean {
+fun isAdbEnabled(context: Context = CtxUtil.getCtx): Boolean {
     return Settings.Secure.getInt(context.contentResolver,
         Settings.Global.ADB_ENABLED,
         0) > 0
@@ -67,7 +67,7 @@ fun getSDKVersionCode(): Int {
  * 获取设备 AndroidID
  */
 @SuppressLint("HardwareIds")
-fun getAndroidID(context: Context = CtxUtil.getCtx()): String {
+fun getAndroidID(context: Context = CtxUtil.getCtx): String {
     val id = Settings.Secure.getString(context.contentResolver,
         Settings.Secure.ANDROID_ID)
     return if ("9774d56d682e549c" == id) "" else id ?: ""
@@ -112,7 +112,7 @@ fun isTablet(): Boolean {
 /**
  * 判断是否是模拟器
  */
-fun isEmulator(context: Context = CtxUtil.getCtx()): Boolean {
+fun isEmulator(context: Context = CtxUtil.getCtx): Boolean {
     val checkProperty = (Build.FINGERPRINT.startsWith("generic") || Build.FINGERPRINT.toLowerCase()
             .contains("vbox") || Build.FINGERPRINT.toLowerCase()
             .contains("test-keys") || Build.MODEL.contains("google_sdk") || Build.MODEL.contains("Emulator") || Build.MODEL.contains(
@@ -141,7 +141,7 @@ fun isEmulator(context: Context = CtxUtil.getCtx()): Boolean {
  * 开发者选项是否打开
  */
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-fun isDevelopmentSettingsEnabled(context: Context = CtxUtil.getCtx()): Boolean {
+fun isDevelopmentSettingsEnabled(context: Context = CtxUtil.getCtx): Boolean {
     return Settings.Global.getInt(context.contentResolver,
         Settings.Global.DEVELOPMENT_SETTINGS_ENABLED,
         0) > 0

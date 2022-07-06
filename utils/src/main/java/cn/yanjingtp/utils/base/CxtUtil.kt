@@ -6,42 +6,30 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
+import androidx.startup.Initializer
+import java.lang.IllegalStateException
 
 /**
  * 无侵入方式获取全局context
+ * 在多进程中使用前需先调用AppInitializer.getInstance(context).initializeComponent(CxtUtil::class.java)
  */
-class CtxUtil : ContentProvider() {
-
+class CtxUtil : Initializer<Unit> {
     companion object {
-
         @SuppressLint("StaticFieldLeak")
         private var mContext: Context? = null
-        fun getCtx(): Context {
-            return mContext ?: throw IllegalAccessException("Cannot find context")
+        val getCtx: Context by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            if (mContext == null) {
+                throw IllegalStateException("在多进程中使用前需先调用AppInitializer.getInstance(context).initializeComponent(CxtUtil::class.java)")
+            }
+            mContext!!
         }
-
     }
-
-    override fun onCreate(): Boolean {
+    override fun create(context: Context) {
         mContext = context
-        return false
     }
 
-    override fun query(uri: Uri,
-            projection: Array<out String>?,
-            selection: String?,
-            selectionArgs: Array<out String>?,
-            sortOrder: String?): Cursor? = null
-
-    override fun getType(uri: Uri): String? = null
-
-    override fun insert(uri: Uri, values: ContentValues?): Uri? = null
-
-    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int = 0
-
-    override fun update(uri: Uri,
-            values: ContentValues?,
-            selection: String?,
-            selectionArgs: Array<out String>?): Int = 0
+    override fun dependencies(): MutableList<Class<out Initializer<*>>> {
+        return emptyList<Class<out Initializer<*>>>().toMutableList()
+    }
 
 }
