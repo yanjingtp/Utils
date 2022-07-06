@@ -13,8 +13,8 @@ android {
 //        applicationId "cn.yanjingtp.utils"
         minSdk 19
         targetSdk 31
-        versionCode 20013
-        versionName "2.0.13"
+        versionCode 20014
+        versionName "2.0.14"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
