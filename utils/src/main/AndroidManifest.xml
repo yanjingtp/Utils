@@ -5,7 +5,7 @@
 
     <application>
         <provider
-            android:authorities="${applicationId}.yanjingtp.androidx-startup"
+            android:authorities="${applicationId}.androidx-startup"
             android:name="androidx.startup.InitializationProvider"
             android:exported="false"
             android:multiprocess="true"
