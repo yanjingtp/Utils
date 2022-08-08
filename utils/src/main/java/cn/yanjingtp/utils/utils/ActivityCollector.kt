@@ -45,26 +45,6 @@ object ActivityCollector {
     }
 
     /**
-     * 关闭指定的Activity
-     * @param activityFinish 需要关闭的Activity
-     */
-    fun finishOneActivity(vararg activityFinish: Activity) {
-        //在activities集合中找到类名与指定类名相同的Activity就关闭
-        val iterator = activities.iterator()
-        while (iterator.hasNext()) {
-            val activity = iterator.next()
-            val name = activity.javaClass.name//activity的类名
-            if (activityFinish.javaClass.name == name) {
-                if (activity.isFinishing) {
-                    iterator.remove()
-                } else {
-                    activity.finish()
-                }
-            }
-        }
-    }
-
-    /**
      * 只保留某个Activity，关闭其他所有Activity
      * @param activityName 要保留的Activity,即activity.javaClass.name
      */
@@ -74,25 +54,6 @@ object ActivityCollector {
             val activity = iterator.next()
             val name = activity.javaClass.name //activity的类名
             if (!activityName.contains(name)) {
-                if (activity.isFinishing) {
-                    iterator.remove()
-                } else {
-                    activity.finish()
-                }
-            }
-        }
-    }
-
-    /**
-     * 只保留某个Activity，关闭其他所有Activity
-     * @param activityKeep 要保留的Activity
-     */
-    fun finishOtherActivity(vararg activityKeep: Activity) {
-        val iterator = activities.iterator()
-        while (iterator.hasNext()) {
-            val activity = iterator.next()
-            val name = activity.javaClass.name //activity的类名
-            if (activityKeep.javaClass.name != name) {
                 if (activity.isFinishing) {
                     iterator.remove()
                 } else {
