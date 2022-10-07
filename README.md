@@ -274,6 +274,9 @@ fun TextView.clearDrawable()
 **从view中获取bitmap**
 fun getBitmapByView(v: View): Bitmap?
 
+**防止用户快速点击**
+fun <T : View> T.click(defaultTime: Int = 500, click: (T) -> Unit)
+
 
 
 
@@ -327,3 +330,11 @@ fun registerForActivityResult(activity: AppCompatActivity)
 
 **直接返回DocumentFile,可通过DocumentFile获取到name,uri等信息**
 fun getDocumentFilePath(targetPath: String)
+
+
+## Utils
+**判断手机的网络状态（是否联网）-1 表示未联网**
+fun getNetWorkInfo(context: Context): Int
+
+**获取首字母大写(将String全部转成小写)**
+fun String?.getFirstUpper(): String?
