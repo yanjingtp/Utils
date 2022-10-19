@@ -1,6 +1,8 @@
 package cn.yanjingtp.utils.base
 
+import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -23,11 +25,25 @@ abstract class BaseActivity<VM : BaseVM, VDB : ViewDataBinding> : AppCompatActiv
 
         ActivityCollector.addActivity(this)
 
+        initLanguage()
+
         //viewModel
         createViewModel()
 
         initData()
         initListener()
+    }
+
+    //初始化application的语言
+    private fun initLanguage() {
+        val configuration = application.resources.configuration
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            configuration.setLocales(resources.configuration.locales)
+        } else {
+            configuration.setLocale(resources.configuration.locale)
+        }
+        val dm: DisplayMetrics = resources.displayMetrics
+        application.resources.updateConfiguration(configuration, dm)
     }
 
     private fun createViewModel() {
@@ -40,7 +56,7 @@ abstract class BaseActivity<VM : BaseVM, VDB : ViewDataBinding> : AppCompatActiv
                 BaseVM::class.java
             }
             mViewModel =
-                    ViewModelProvider(this)[modelClass.asSubclass(ViewModel::class.java)] as VM
+                ViewModelProvider(this)[modelClass.asSubclass(ViewModel::class.java)] as VM
         }
     }
 
